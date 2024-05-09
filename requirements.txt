@@ -1,0 +1,5 @@
+torch
+transformers 
+opencv-python
+accelerate
+peft
