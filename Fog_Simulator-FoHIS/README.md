@@ -1,6 +1,7 @@
 # Foggy Image Generation with Fog Simulator: FoHIS
 
 This code is inspired by the paper titled "Towards Simulating Foggy and Hazy Images and Evaluating Their Authenticity."
+
 GitHub repository: [FoHIS](https://github.com/noahzn/FoHIS).
 
 ## Depth Estimation Methods
