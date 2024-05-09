@@ -152,23 +152,25 @@ for image_file in os.listdir(image_dir):
             distance_through_fog[idx3] = (FT - HT) * distance[idx3] / (elevation[idx3] - CAMERA_ALTITUDE)
             distance_through_haze_free[idx3] = distance[idx3] - distance_through_haze[idx3] - distance_through_fog[idx3]
 
-            # Apply fog effect to image
+            # Apply fog effect to image in RGB color space
             I = np.empty_like(Ip)
             result = np.empty_like(Ip)
 
-            I[:, :, 0] = Ip[:, :, 0] * np.exp(-ECA * distance_through_haze - ECM * distance_through_fog)
-            I[:, :, 1] = Ip[:, :, 1] * np.exp(-ECA * distance_through_haze - ECM * distance_through_fog)
-            I[:, :, 2] = Ip[:, :, 2] * np.exp(-ECA * distance_through_haze - ECM * distance_through_fog)
+            I[:, :, 0] = Ip[:, :, 2] * np.exp(-ECA * distance_through_haze - ECM * distance_through_fog)  # Red channel
+            I[:, :, 1] = Ip[:, :, 1] * np.exp(
+                -ECA * distance_through_haze - ECM * distance_through_fog)  # Green channel
+            I[:, :, 2] = Ip[:, :, 0] * np.exp(-ECA * distance_through_haze - ECM * distance_through_fog)  # Blue channel
+
             O = 1 - np.exp(-ECA * distance_through_haze - ECM * distance_through_fog)
 
             Ial = np.empty_like(Ip)
-            Ial[:, :, 0] = 225
-            Ial[:, :, 1] = 225
-            Ial[:, :, 2] = 201
+            Ial[:, :, 0] = 201  # R
+            Ial[:, :, 1] = 225  # G
+            Ial[:, :, 2] = 225  # B
 
-            result[:, :, 0] = I[:, :, 0] + O * Ial[:, :, 0]
-            result[:, :, 1] = I[:, :, 1] + O * Ial[:, :, 1]
-            result[:, :, 2] = I[:, :, 2] + O * Ial[:, :, 2]
+            result[:, :, 0] = I[:, :, 0] + O * Ial[:, :, 0]  # R
+            result[:, :, 1] = I[:, :, 1] + O * Ial[:, :, 1]  # G
+            result[:, :, 2] = I[:, :, 2] + O * Ial[:, :, 2]  # B
 
             print(f'--Writing Results/Simulated_FINAL_FOG/{image_file}_result.jpg')
             cv2.imwrite(f'Results/Simulated_FINAL_FOG/{image_file}_result.jpg', cv2.cvtColor(result, cv2.COLOR_BGR2RGB))
