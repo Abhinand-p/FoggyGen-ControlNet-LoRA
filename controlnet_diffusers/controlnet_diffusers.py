@@ -3,14 +3,13 @@ from diffusers.utils import load_image
 import numpy as np
 from diffusers import StableDiffusionControlNetPipeline, ControlNetModel
 import torch
-import scripts.control_utils as cu
 from transformers import pipeline
 import cv2
 from PIL import Image
 import os
 import random
 from diffusers import UniPCMultistepScheduler
-
+import torchvision.transforms as tt
 
 num_inference_steps = 100
 
@@ -28,7 +27,13 @@ size = 512
 use_gt_depth = True
 
 
-
+def get_image(path, size=512):
+    image = Image.open(path)
+    if not image.mode == "RGB":
+        image = image.convert("RGB")
+    image = tt.CenterCrop(size)(tt.Resize(size)(image))
+    return image
+    
 # initialize the models and pipeline
 # Set the number of images to generate per prompt
 num_images_per_prompt = 5
@@ -64,7 +69,7 @@ if USE_GT_DEPTH:
   random.shuffle(lst)
   for path in lst:
     #load n depthMaps
-    #image = cu.get_image(os.path.join(depth_path_dir,path), size=size)
+    #image = get_image(os.path.join(depth_path_dir,path), size=size)
     image = load_depth_map("train_lora_shift/00000440_depth_front.png")
     images.append(image)
     paths.append(path)
