@@ -3,3 +3,5 @@ transformers
 opencv-python
 accelerate
 peft
+matplotlib
+noise
