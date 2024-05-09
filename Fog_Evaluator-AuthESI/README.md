@@ -9,3 +9,8 @@ The core concept involves identifying foggy regions within images and subsequent
 ![Evaluation-Fog.png](Evaluation-Fog.png)
 
 This Fog-Score serves as a quantitative indicator, revealing the fidelity of fog particle distribution in comparison to the authentic dataset used for training.
+
+## Results:
+- ![Evaluation-Grid-SHIFT_Depth_Maps.png](Evaluation-Grid-SHIFT_Depth_Maps.png)
+- ![Evaluation-Grid-Depth_Anything.png](Evaluation-Grid-Depth_Anything.png)
+- ![Evaluation-Grid-MiDaS.png](Evaluation-Grid-MiDaS.png)
