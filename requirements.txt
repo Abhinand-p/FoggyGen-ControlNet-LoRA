@@ -3,3 +3,7 @@ transformers
 opencv-python
 accelerate
 peft
+torchmetrics
+torch-fidelity
+matplotlib
+noise
