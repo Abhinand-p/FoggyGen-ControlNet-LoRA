@@ -1,44 +1,13 @@
+# FoggyGen-ControlNet-LoRA
+
+A deep learning-based approach for generating realistic foggy images using ControlNet, LoRA and FOHIS. This project fine-tunes diffusion models for improved fog simulation, useful in training autonomous vehicles and environmental simulations.
+
+# Fog Simulator FOHIS
+This simulator uses the FOHIS (Fog in High Intensity Scenarios) approach to generate varying levels of fog density, enhancing the realism of foggy conditions in simulated environments.
+![Combined-grid.png](Fog_Simulator-FoHIS%2FResults%2FCombined-grid.png)
+
 # Foggy Image Generation with Stable Diffusion
+This project utilizes stable diffusion techniques to simulate foggy conditions in images, offering a versatile framework for generating synthetic data in controlled environments.
+![controlnet_lora_1.5.png](controlnet_diffusers%2Fcontrolnet_lora_1.5.png)
 
-
-## Description
-This repository is part of the final project for the course `Computer Vision: 3D Reconstruction`.
-
-## Installation
-
-### Requirements
-
-Tested with CUDA 12.2 on Ubuntu 22.04
-
-a. Create a conda environment and activate it.
-
-```shell
-conda create -n finalproject3dcv python
-conda activate finalproject3dcv
-
-```
-
-b. Follow the [official instructions](https://pytorch.org/) to install Pytorch.
-
-c. Clone the diffusers repo and install the library (the pip package is not sufficient).
-
-```shell
-git clone https://github.com/huggingface/diffusers/
-cd diffusers
-pip install .
-```
-
-d. Clone this repo and install all other requirements.
-
-```shell
-cd ..
-git clone https://github.com/llswrtn/FinalProject3DCV
-cd FinalProject3DCV
-
-pip install -r requirements.txt
-```
-
-
-c. To run the `demo.ipynb` notebook, create a directory `weights`, download a [trained LoRA model](https://drive.google.com/drive/folders/1rTomopvoKfo1jFGK21pdlEa8uNZjf_Tx?usp=sharing) and place it into the newly created `weights` directory. When using a different LoRA model or depth map, adapt the paths in the second cell of the notebook accordingly.
-
-For evaluation, please use the `eval/fid.py` script. This was not included into the demo notebook, since the computation of the FID score requires a large number of generated images and considerably more computational resources. 
+![controlnet_vanilla_1.5_original_depthmap.png](controlnet_diffusers%2Fcontrolnet_vanilla_1.5_original_depthmap.png)
